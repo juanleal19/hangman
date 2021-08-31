@@ -24,7 +24,7 @@ def choise(): # funcion que nos ayuda a escoger una palabra de la lista
             palabras.append(line)
 
     random_word = random.choice(palabras)
-    random_word = normalize(random_word).upper()
+    random_word = normalize(random_word).upper().replace(" ","")
     random_word = random_word[0:len(random_word)-1]
  
     return random_word
@@ -38,21 +38,22 @@ def run():
     choise()
     random_word = choise()
     print(random_word) # mostrar la palaba a adivinar
+    linea = len(random_word)*"_"
+    word = list(enumerate(random_word))
+    linea = list(enumerate(linea))
 
-    while True:
-        linea = len(random_word)*"_ "
+    while linea != word:
         print(linea)
         letra = normalize(str(input("digite una letra: "))).upper()
         print(letra)
         
-        if letra in random_word:
-            word = list(enumerate(random_word))
+        if letra in random_word:          
             for num, character in word : #para los numero y caracteres en word
-                #print(num, character)
-                if character == letra:
-                     linea = list(enumerate(linea.replace(" ",""))) #hacemus una lista y enumeramos la linea en blanco
-                     
-                     print(linea)    
+                if character == letra:  
+                     linea[num] = word[num]
+                     print(linea, word, )    
+    
+    print("gano")
                      
                      
 
