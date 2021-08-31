@@ -51,7 +51,8 @@ def run():
             for num, character in word : #para los numero y caracteres en word
                 if character == letra:  
                      linea[num] = word[num]
-                     print(linea, word, )    
+                     print( word )    
+        os.system("cls")             
     
     print("gano")
                      
