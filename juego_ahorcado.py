@@ -15,7 +15,69 @@ def normalize(s):
     for a, b in replacements:
         s = s.replace(a, b).replace(a.upper(), b.upper())
     return s
+title = (''' 
+    ##############################################
+     _                                             
+    | |                                            
+    | |__   __ _ _ __   __ _ _ __ ___   __ _ _ __  
+    | '_ \ / _` | '_ \ / _` | '_ ` _ \ / _` | '_ \ 
+    | | | | (_| | | | | (_| | | | | | | (_| | | | |
+    |_| |_|\__,_|_| |_|\__, |_| |_| |_|\__,_|_| |_|
+                        __/ |                      
+                       |___/                      
+    ##############################################
+    ''')
 
+graphics = ['''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========''']
 
 def choise(): # funcion que nos ayuda a escoger una palabra de la lista 
     palabras = []
@@ -30,11 +92,8 @@ def choise(): # funcion que nos ayuda a escoger una palabra de la lista
     return random_word
 
 def run():
-    print(''' 
-    ##############################################
-                    JUEGO DEL AHORCADO
-    ##############################################
-    ''')
+    print(title)
+    cont = 0
     choise()
     random_word = choise()
     print(random_word) # mostrar la palaba a adivinar
@@ -43,14 +102,16 @@ def run():
     linea = list(enumerate(linea))
 
     while linea != word:
+        cont += 1        
+        print(graphics[cont])
         print(linea)
         letra = normalize(str(input("digite una letra: "))).upper()
-        print(letra)
         
         if letra in random_word:          
             for num, character in word : #para los numero y caracteres en word
                 if character == letra:  
                      linea[num] = word[num]
+
                      print( word )    
         os.system("cls")             
     
