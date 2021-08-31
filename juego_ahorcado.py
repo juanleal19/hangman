@@ -1,4 +1,8 @@
+import os
 import random
+
+from os import system, name
+
 def normalize(s):
     replacements = (
         ("á", "a"),
@@ -21,17 +25,9 @@ def choise(): # funcion que nos ayuda a escoger una palabra de la lista
 
     random_word = random.choice(palabras)
     random_word = normalize(random_word).upper()
-    #random_word = random_word[0:len(random_word)-1]
-    #print(random_word) #escogemos una palabla random de la lista
-    #print(len(random_word)) #lo largo de la palabra escogida
+    random_word = random_word[0:len(random_word)-1]
+ 
     return random_word
-
-def lineas():
-    palabra = choise()
-    palabra = len(palabra)
-    palabra = palabra*"_ "
-    print(palabra)
-
 
 def run():
     print(''' 
@@ -42,15 +38,31 @@ def run():
     choise()
     random_word = choise()
     print(random_word) # mostrar la palaba a adivinar
-    lineas()
 
     while True:
+        linea = len(random_word)*"_ "
+        print(linea)
         letra = normalize(str(input("digite una letra: "))).upper()
         print(letra)
+        
         if letra in random_word:
-            print("adivino una letra")
-        else:
-            print("letra incorrecta")
+            word = list(enumerate(random_word))
+            for num, character in word : #para los numero y caracteres en word
+                #print(num, character)
+                if character == letra:
+                     linea = list(enumerate(linea.replace(" ",""))) #hacemus una lista y enumeramos la linea en blanco
+                     
+                     print(linea)    
+                     
+                     
+
+                
+
+
+
+ 
+
+
 
 
 
