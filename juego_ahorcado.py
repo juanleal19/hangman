@@ -78,6 +78,31 @@ graphics = ['''
  / \  |
       |
 =========''']
+WIN = ('''
+$$\     $$\  $$$$$$\  $$\   $$\       $$\      $$\ $$$$$$\ $$\   $$\       $$\ $$\ $$\ 
+\$$\   $$  |$$  __$$\ $$ |  $$ |      $$ | $\  $$ |\_$$  _|$$$\  $$ |      $$ |$$ |$$ |
+ \$$\ $$  / $$ /  $$ |$$ |  $$ |      $$ |$$$\ $$ |  $$ |  $$$$\ $$ |      $$ |$$ |$$ |
+  \$$$$  /  $$ |  $$ |$$ |  $$ |      $$ $$ $$\$$ |  $$ |  $$ $$\$$ |      $$ |$$ |$$ |
+   \$$  /   $$ |  $$ |$$ |  $$ |      $$$$  _$$$$ |  $$ |  $$ \$$$$ |      \__|\__|\__|
+    $$ |    $$ |  $$ |$$ |  $$ |      $$$  / \$$$ |  $$ |  $$ |\$$$ |                  
+    $$ |     $$$$$$  |\$$$$$$  |      $$  /   \$$ |$$$$$$\ $$ | \$$ |      $$\ $$\ $$\ 
+    \__|     \______/  \______/       \__/     \__|\______|\__|  \__|      \__|\__|\__|
+                                                                                       
+                                                                                      
+''')
+
+LOST = ('''
+ __      __   ______   __    __        __         ______    ______   ________              ___ 
+/  \    /  | /      \ /  |  /  |      /  |       /      \  /      \ /        |            /   |
+$$  \  /$$/ /$$$$$$  |$$ |  $$ |      $$ |      /$$$$$$  |/$$$$$$  |$$$$$$$$/        __  /$$$/ 
+ $$  \/$$/  $$ |  $$ |$$ |  $$ |      $$ |      $$ |  $$ |$$ \__$$/    $$ |         /  |/$$ /  
+  $$  $$/   $$ |  $$ |$$ |  $$ |      $$ |      $$ |  $$ |$$      \    $$ |         $$/ $$ |   
+   $$$$/    $$ |  $$ |$$ |  $$ |      $$ |      $$ |  $$ | $$$$$$  |   $$ |          __ $$ |   
+    $$ |    $$ \__$$ |$$ \__$$ |      $$ |_____ $$ \__$$ |/  \__$$ |   $$ |         /  |$$  \_ 
+    $$ |    $$    $$/ $$    $$/       $$       |$$    $$/ $$    $$/    $$ |         $$/  $$   |
+    $$/      $$$$$$/   $$$$$$/        $$$$$$$$/  $$$$$$/   $$$$$$/     $$/                $$$/ 
+                                                                                               
+''')
 
 def choise(): # funcion que nos ayuda a escoger una palabra de la lista 
     palabras = []
@@ -94,28 +119,36 @@ def choise(): # funcion que nos ayuda a escoger una palabra de la lista
 def run():
     print(title)
     cont = 0
-    choise()
+    lives = 7
     random_word = choise()
     print(random_word) # mostrar la palaba a adivinar
     linea = len(random_word)*"_"
     word = list(enumerate(random_word))
     linea = list(enumerate(linea))
 
-    while linea != word:
-        cont += 1        
+    while linea != word:       
         print(graphics[cont])
-        print(linea)
+        print(linea, "\n Do you have: "+str(lives) +" lives", cont)
         letra = normalize(str(input("digite una letra: "))).upper()
         
         if letra in random_word:          
             for num, character in word : #para los numero y caracteres en word
                 if character == letra:  
                      linea[num] = word[num]
+                     
+            os.system("cls")  
+        else:
+            cont += 1
+            lives -= 1
+            os.system("cls")      
 
-                     print( word )    
-        os.system("cls")             
-    
-    print("gano")
+        if cont == 6:
+            os.system("cls") 
+            print(LOST) 
+            break  
+        
+
+    print(WIN)
                      
                      
 
