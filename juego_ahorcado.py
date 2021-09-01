@@ -117,50 +117,49 @@ def choise(): # funcion que nos ayuda a escoger una palabra de la lista
     return random_word
 
 def run():
-    print(title)
-    cont = 0
-    lives = 7
-    random_word = choise()
-    print(random_word) # mostrar la palaba a adivinar
-    linea = len(random_word)*"_"
-    word = list(enumerate(random_word))
-    linea = list(enumerate(linea))
+    try:
+        print(title)
+        cont = 0
+        lives = 7
+        random_word = choise()
+        print(random_word) # mostrar la palaba a adivinar
+        linea = len(random_word)*"_"
+        word = list(enumerate(random_word))
+        linea = list(enumerate(linea))
 
-    while linea != word:       
-        print(graphics[cont])
-        print(linea, "\n Do you have: "+str(lives) +" lives", cont)
-        letra = normalize(str(input("digite una letra: "))).upper()
+        while linea != word:       
+            print(graphics[cont])
+            print(linea, "\n Do you have: "+str(lives) +" lives", cont)
+            letra = normalize(str(input("digite una letra: "))).upper()
+            
+            if letra in random_word:          
+                for num, character in word : #para los numero y caracteres en word
+                    if character == letra:  
+                        linea[num] = word[num]
+                        
+                os.system("cls")  
+            else:
+                cont += 1
+                lives -= 1
+                os.system("cls")      
+
+            if cont == 6:
+                os.system("cls") 
+                print(LOST) 
+                break
+            elif linea == word:
+                print(WIN)
+        play= int(input("press 1 if you want to play again "))
         
-        if letra in random_word:          
-            for num, character in word : #para los numero y caracteres en word
-                if character == letra:  
-                     linea[num] = word[num]
-                     
-            os.system("cls")  
+        if play == 1:
+            run()
         else:
-            cont += 1
-            lives -= 1
-            os.system("cls")      
+            os.system("cls")
+            print("bye")
 
-        if cont == 6:
-            os.system("cls") 
-            print(LOST) 
-            break  
+    except ValueError:
+        print("you can only enter letters")
         
-
-    print(WIN)
-                     
-                     
-
-                
-
-
-
- 
-
-
-
-
 
 
 if __name__ == "__main__":
