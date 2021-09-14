@@ -120,7 +120,7 @@ def run():
     try:
         print(title)
         cont = 0
-        lives = 7
+        lives = 8
         random_word = choise()
         print(random_word) # mostrar la palaba a adivinar
         linea = len(random_word)*"_"
@@ -143,7 +143,7 @@ def run():
                 lives -= 1
                 os.system("cls")      
 
-            if cont == 6:
+            if cont == 7:
                 os.system("cls") 
                 print(LOST) 
                 break
