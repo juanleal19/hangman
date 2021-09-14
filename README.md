@@ -4,7 +4,11 @@ it's based on python.
  
  - if you want to colaborate sent an [email](jsleal19@gmail.com "email") 
  
+<<<<<<< HEAD
  
  
  
  - im a studet of Mechatronic engineering
+=======
+ - or visit https://juanleal19.github.io/juanleal19/
+>>>>>>> 9aad9e8 (se arreglo el problema)
